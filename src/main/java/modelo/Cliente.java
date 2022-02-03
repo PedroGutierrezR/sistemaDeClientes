@@ -2,28 +2,26 @@ package modelo;
 
 public class Cliente {
 
-	/*
-	 * 
-	 * ● Generar el constructor con parámetros ● Generar los getter y setter
-	 * correspondientes ● Generar el toString para los parámetros
-	 */
-
 	private String runCliente;
 	private String nombreCliente;
 	private String apellidoCliente;
-	private int aniosCliente;
+	private String aniosCliente;
 	private CategoríaEnum nombreCategoria;
 
-	public Cliente(String runCliente, String nombreCliente, String apellidoCliente, int aniosCliente,
-			CategoríaEnum nombreCategoria) {
+	public Cliente(String runCliente, String nombreCliente, String apellidoCliente, String aniosCliente) {
 		super();
 		this.runCliente = runCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.aniosCliente = aniosCliente;
-		this.nombreCategoria = nombreCategoria;
+		this.nombreCategoria = CategoríaEnum.ACTIVO;
 	}
-
+	
+	public Cliente() {
+		super();
+		
+	}
+	
 	public String getRunCliente() {
 		return runCliente;
 	}
@@ -48,16 +46,23 @@ public class Cliente {
 		this.apellidoCliente = apellidoCliente;
 	}
 
-	public int getAniosCliente() {
+	public String getAniosCliente() {
 		return aniosCliente;
 	}
 
-	public void setAniosCliente(int aniosCliente) {
+	public void setAniosCliente(String aniosCliente) {
 		this.aniosCliente = aniosCliente;
 	}
 
 	public CategoríaEnum getNombreCategoria() {
 		return nombreCategoria;
+	}
+	
+	public String getNombreCategoriaString() {
+		
+		String nombreCategoriaString = nombreCategoria.toString();
+		
+		return nombreCategoriaString;
 	}
 
 	public void setNombreCategoria(CategoríaEnum nombreCategoria) {
@@ -66,8 +71,8 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [runCliente=" + runCliente + ", nombreCliente=" + nombreCliente + ", apellidoCliente="
-				+ apellidoCliente + ", aniosCliente=" + aniosCliente + ", nombreCategoria=" + nombreCategoria + "]";
+		return "RUN del Cliente: " + runCliente + "\nNombre del Cliente: " + nombreCliente + "\nApellido del Cliente: "
+				+ apellidoCliente + "\nAños como Cliente: " + aniosCliente + "\nCategoría del Cliente: " + nombreCategoria;
 	}
 
 }
