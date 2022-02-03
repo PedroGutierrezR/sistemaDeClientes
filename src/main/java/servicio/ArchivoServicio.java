@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import datos.Datos;
 import modelo.Cliente;
 
 public class ArchivoServicio extends Exportador {
@@ -36,20 +38,20 @@ public class ArchivoServicio extends Exportador {
 
 				String[] datosClientes = lineas.split(",");
 				String run = datosClientes[0];
-				Boolean confirmacion = false;				
-				lista = clienteServicio.getListaClientes();
+				boolean confirmacion = false;				
+				lista = Datos.getInstancia().getListaClientes();
 				
 				for(int i = 0; i < lista.size(); i++) {
 					
 					String verificacion = lista.get(i).getRunCliente();
 					
-					if(verificacion == run) {
+					if(verificacion.equals(run)) {
 						confirmacion = true;
 					}
 					
 				}
 				
-				if (confirmacion) {
+				if (confirmacion == true) {
 					System.out.println("Cliente ya existe");
 				} else {
 					cliente = new Cliente(datosClientes[0], datosClientes[1], datosClientes[2],

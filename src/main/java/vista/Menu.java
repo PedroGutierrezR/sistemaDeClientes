@@ -1,9 +1,9 @@
 package vista;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import modelo.Cliente;
+
+import datos.Datos;
 import servicio.ArchivoServicio;
 import servicio.ClienteServicio;
 
@@ -77,15 +77,14 @@ public class Menu {
 	}
 
 	private void exportarDatos() {
-
-		List<Cliente> listaClientes = clienteServicio.getListaClientes();
-
-		archivoServicio.exportar(fileName, listaClientes);
+		
+		Datos listaDatos = Datos.getInstancia();
+		archivoServicio.exportar(fileName, listaDatos.getListaClientes());
 
 	}
 
 	private void terminarPrograma() {
-		System.out.println("saliendo del sistem de clientes...");
+		System.out.println("saliendo del sistema de clientes...");
 		try {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("Programa terminado");

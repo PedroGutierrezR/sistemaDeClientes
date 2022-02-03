@@ -1,29 +1,28 @@
 package servicio;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import datos.Datos;
 import modelo.CategoríaEnum;
 import modelo.Cliente;
 
 public class ClienteServicio {
 
-	private List<Cliente> listaClientes;
 	private Scanner scanner;
+	private Datos listaDatos = Datos.getInstancia();
 
 	public ClienteServicio() {
 		super();
 		this.scanner = new Scanner(System.in);
-		this.listaClientes = new ArrayList<Cliente>();
 	}
 
 	public void listarClientes() {
 
-		if (listaClientes.isEmpty()) {
+		if (listaDatos.getListaClientes().isEmpty()) {
 			System.out.println("\nNo existen clientes... intente con la opción dos.\n");
 		} else {
-			for (Cliente cliente : listaClientes) {
+			for (Cliente cliente : listaDatos.getListaClientes()) {
 				System.out.println("-------------Datos del Cliente-------------\n");
 				System.out.println(cliente.toString());
 				System.out.println("-------------------------------------------");
@@ -49,7 +48,7 @@ public class ClienteServicio {
 		Cliente cliente = new Cliente(runCliente, nombreCliente, apellidoCliente, aniosCliente);
 
 		setListaClientes(cliente);
-	
+
 		return cliente;
 	}
 
@@ -162,11 +161,11 @@ public class ClienteServicio {
 		System.out.println("Ingrese RUN del Cliente a editar: ");
 		String runCliente = scanner.next();
 
-		for (int i = 0; i < listaClientes.size(); i++) {
+		for (int i = 0; i < listaDatos.getListaClientes().size(); i++) {
 
-			if (listaClientes.get(i).getRunCliente().equals(runCliente)) {
+			if (listaDatos.getListaClientes().get(i).getRunCliente().equals(runCliente)) {
 
-				return listaClientes.get(i);
+				return listaDatos.getListaClientes().get(i);
 
 			}
 		}
@@ -175,14 +174,14 @@ public class ClienteServicio {
 	}
 
 	public List<Cliente> getListaClientes() {
-		return listaClientes;
+		return listaDatos.getListaClientes();
 	}
-	
+
 	public void setListaClientes(Cliente cliente) {
-		
-		listaClientes.add(cliente);
+
+		listaDatos.agregarClientesSingleton(cliente);
 		System.out.println("Datos cargados correctamente en la lista");
-		
+
 	}
 
 }
