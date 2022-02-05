@@ -6,7 +6,7 @@ public class Cliente {
 	private String nombreCliente;
 	private String apellidoCliente;
 	private String aniosCliente;
-	private CategoríaEnum nombreCategoria;
+	private CategoriaEnum nombreCategoria;
 
 	public Cliente(String runCliente, String nombreCliente, String apellidoCliente, String aniosCliente) {
 		super();
@@ -14,7 +14,7 @@ public class Cliente {
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.aniosCliente = aniosCliente;
-		this.nombreCategoria = CategoríaEnum.ACTIVO;
+		this.nombreCategoria = CategoriaEnum.ACTIVO;
 	}
 	
 	public Cliente() {
@@ -54,7 +54,7 @@ public class Cliente {
 		this.aniosCliente = aniosCliente;
 	}
 
-	public CategoríaEnum getNombreCategoria() {
+	public CategoriaEnum getNombreCategoria() {
 		return nombreCategoria;
 	}
 	
@@ -65,7 +65,7 @@ public class Cliente {
 		return nombreCategoriaString;
 	}
 
-	public void setNombreCategoria(CategoríaEnum nombreCategoria) {
+	public void setNombreCategoria(CategoriaEnum nombreCategoria) {
 		this.nombreCategoria = nombreCategoria;
 	}
 

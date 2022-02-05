@@ -1,49 +1,42 @@
 package servicio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import modelo.Cliente;
 
-@DisplayName("Test clase ClienteServicio")
 public class ClienteServicioTest {
-	
-	private static Logger logger = Logger.getLogger("ClienteServicioTest");
-	private static ClienteServicio clienteServicio;
-	private static Cliente cliente;
 
-	@BeforeAll
-	public static void setup() {
-		clienteServicio = new ClienteServicio();
-	}
-	
+	private static Logger logger = Logger.getLogger("cl.desafaiolatam.servicio.ClienteServicio");
+
 	@Test
-	public void agregarClienteTest() {
+	public void testAgregarCliente() {
 		
-		logger.info("Información de agregarClienteNullTest");
-		cliente = new Cliente();
-		cliente = clienteServicio.agregarCliente();	
-		assertEquals("3", cliente.getAniosCliente());
+		ClienteServicio clienteServicio = new ClienteServicio();	
+		logger.info("Test agregar cliente");
+		List<Cliente> listaClientes = clienteServicio.agregarCliente();
+	
+		assertEquals("3", listaClientes.get(0).getAniosCliente());
+
 	}
 
 	@Test
 	public void agregarClienteNullTest() {
-		
-		logger.info("Información de agregarClienteNullTest");
-		cliente = new Cliente();
-		cliente = clienteServicio.agregarCliente();	
-		assertEquals(null, cliente);
+
+		ClienteServicio clienteServicio = new ClienteServicio();
+		logger.info("Test agregar cliente nulo");
+		List<Cliente> listaClientes = clienteServicio.agregarCliente();
+
+		assertEquals("null", listaClientes.get(1).getApellidoCliente());
 	}
-	
+
 	@AfterAll
 	static void done() {
-		logger.info("Fin clase de prueba");
+		logger.info("Fin de la clase de prueba");
 	}
 
 }

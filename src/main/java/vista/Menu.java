@@ -1,11 +1,13 @@
 package vista;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.concurrent.TimeUnit;
 
 import datos.Datos;
 import servicio.ArchivoServicio;
 import servicio.ClienteServicio;
+import utilidades.OurScanner;
+import utilidades.Utilidad;
 
 public class Menu {
 
@@ -14,7 +16,7 @@ public class Menu {
 	private String fileName; // para exportar el archivo
 	private String fileName1; // para importar el archivo
 	private int opcion;
-	private Scanner scanner;
+	private OurScanner ourScanner;
 
 	public Menu() {
 		super();
@@ -22,41 +24,46 @@ public class Menu {
 		this.archivoServicio = new ArchivoServicio();
 		this.fileName = "Clientes";
 		this.fileName1 = "DBClientes.csv";
-		this.scanner = new Scanner(System.in);
+		this.ourScanner = new OurScanner();
 	}
 
 	public void iniciarMenu() {
+		try {
+			do {
 
-		do {
-			System.out.println("1. Listar Clientes\n" + "2. Agregar Cliente\n" + "3. Editar Cliente\n"
-					+ "4. Cargar Datos\n" + "5. Exportar Datos\n" + "6. Salir\n" + "Ingrese una opción:");
-			opcion = scanner.nextInt();
+				int opcion = ourScanner.imprimirMenuPrincipal();
 
-			switch (opcion) {
-			case 1:
-				listarClientes();
-				break;
-			case 2:
-				agregarCliente();
-				break;
-			case 3:
-				editarCliente();
-				break;
-			case 4:
-				importarDatos();
-				break;
-			case 5:
-				exportarDatos();
-				break;
-			case 6:
-				terminarPrograma();
-				break;
-			default:
-				System.out.println("opción inválida. Intente de nuevo");
-				break;
-			}
+				switch (opcion) {
+				case 1:
+					listarClientes();
+					break;
+				case 2:
+					agregarCliente();
+					break;
+				case 3:
+					editarCliente();
+					break;
+				case 4:
+					importarDatos();
+					break;
+				case 5:
+					exportarDatos();
+					break;
+				case 6:
+					Utilidad.clearConsole();
+					break;
+				case 7:
+					terminarPrograma();
+					break;
+				default:
+					System.out.println("opción inválida. Intente de nuevo");
+					break;
+				}
+			} while (opcion != 7);
 
-		} while (opcion != 6);
+		} catch (InputMismatchException e) {
+			System.out.println("Opción incorrecta... se detuvo el programa");
+		}
 
 	}
 
@@ -77,7 +84,7 @@ public class Menu {
 	}
 
 	private void exportarDatos() {
-		
+
 		Datos listaDatos = Datos.getInstancia();
 		archivoServicio.exportar(fileName, listaDatos.getListaClientes());
 
@@ -88,7 +95,7 @@ public class Menu {
 		try {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("Programa terminado");
-			scanner.close();
+			System.exit(0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

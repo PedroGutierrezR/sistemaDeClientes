@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import datos.Datos;
+import modelo.CategoriaEnum;
 import modelo.Cliente;
 
 public class ArchivoServicio extends Exportador {
@@ -54,8 +55,12 @@ public class ArchivoServicio extends Exportador {
 				if (confirmacion == true) {
 					System.out.println("Cliente ya existe");
 				} else {
-					cliente = new Cliente(datosClientes[0], datosClientes[1], datosClientes[2],
-							datosClientes[3]);
+					cliente = new Cliente(datosClientes[0], datosClientes[1], datosClientes[2], datosClientes[3]);
+					
+					String estado = datosClientes[4];
+					
+					cliente.setNombreCategoria(CategoriaEnum.fromString(estado));
+					
 					clienteServicio.setListaClientes(cliente);
 				}
 			}

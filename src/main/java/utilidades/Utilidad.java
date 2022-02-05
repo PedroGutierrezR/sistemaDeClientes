@@ -1,10 +1,24 @@
 package utilidades;
 
 public class Utilidad {
+	
+	public static void clearConsole() {
+		try {
+			String operatingSystem = System.getProperty("os.name");
 
-	/*
-	 * 14. Crear una clase Utilidad en package utilidades, que contenga métodos reutilizables
-para el menú como limpiar pantalla, mostrar mensajes, etc.
-	 */
+			if (operatingSystem.contains("Windows")) {
+				ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+				Process startProcess = pb.inheritIO().start();
+				startProcess.waitFor();
+			} else {
+				ProcessBuilder pb = new ProcessBuilder("clear");
+				Process startProcess = pb.inheritIO().start();
+
+				startProcess.waitFor();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	
 }
